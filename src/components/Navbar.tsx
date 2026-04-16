@@ -169,7 +169,7 @@ export default function Navbar() {
               fontWeight="bold"
               _hover={{ bg: "accent.600", transform: "scale(1.02)" }}
               transition="all 0.2s"
-              onClick={() => scrollTo("/contact")}
+              onClick={() => scrollTo("#contact")}
             >
               Get Quote
             </Button>
@@ -232,7 +232,7 @@ export default function Navbar() {
                     fontWeight="bold"
                     mt={4}
                     _hover={{ bg: "accent.600" }}
-                    onClick={() => scrollTo("/contact")}
+onClick={() => scrollTo("#contact")}
                   >
                     <FiPhone style={{ marginRight: "8px" }} />
                     Get Quote
