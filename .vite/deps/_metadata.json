@@ -1,0 +1,64 @@
+{
+  "hash": "ae461620",
+  "configHash": "a49e3794",
+  "lockfileHash": "576986e8",
+  "browserHash": "aa8cba14",
+  "optimized": {
+    "@chakra-ui/react": {
+      "src": "../../node_modules/@chakra-ui/react/dist/esm/index.js",
+      "file": "@chakra-ui_react.js",
+      "fileHash": "44a4aa67",
+      "needsInterop": false
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "cd96ac4d",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "54fe954b",
+      "needsInterop": true
+    },
+    "react-icons/fi": {
+      "src": "../../node_modules/react-icons/fi/index.mjs",
+      "file": "react-icons_fi.js",
+      "fileHash": "3bafdeb7",
+      "needsInterop": false
+    },
+    "react-intersection-observer": {
+      "src": "../../node_modules/react-intersection-observer/dist/index.mjs",
+      "file": "react-intersection-observer.js",
+      "fileHash": "e87fd529",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "aa9f7957",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "67bcf705",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "emotion-is-prop-valid.esm-D_LBSqVf": {
+      "file": "emotion-is-prop-valid.esm-D_LBSqVf.js",
+      "isDynamicEntry": false
+    },
+    "react-DQX-MDaH": {
+      "file": "react-DQX-MDaH.js",
+      "isDynamicEntry": false
+    },
+    "react-dom-MtTNshOk": {
+      "file": "react-dom-MtTNshOk.js",
+      "isDynamicEntry": false
+    }
+  }
+}
