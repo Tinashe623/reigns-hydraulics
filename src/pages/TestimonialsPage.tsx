@@ -1,18 +1,13 @@
 import { Box } from "@chakra-ui/react"
-import Navbar from "../components/Navbar"
+import Layout from "../components/Layout"
 import Testimonials from "../components/Testimonials"
-import Footer from "../components/Footer"
-import BackToTop from "../components/BackToTop"
 
 export default function TestimonialsPage() {
   return (
-    <Box bg="navy.950" minH="100vh">
-      <Navbar />
-      <main id="main-content">
+    <Layout>
+      <Box bg="navy.950" minH="100vh">
         <Testimonials />
-      </main>
-      <Footer />
-      <BackToTop />
-    </Box>
+      </Box>
+    </Layout>
   )
 }

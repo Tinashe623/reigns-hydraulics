@@ -52,13 +52,14 @@ const Particle = ({ delay = 0 }: { delay?: number }) => {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const isMobile = useBreakpointValue({ base: true, md: false })
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
 
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  const yBg = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "30%"])
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   const scrollTo = (href: string) => {

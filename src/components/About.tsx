@@ -115,6 +115,7 @@ export default function About() {
             <Box position="relative">
               {/* Modern Decorative Elements */}
               <MotionBox
+                display={{ base: "none", md: "block" }}
                 position="absolute"
                 top="-20px"
                 left="-20px"
@@ -133,6 +134,7 @@ export default function About() {
                 }}
               />
               <MotionBox
+                display={{ base: "none", lg: "block" }}
                 position="absolute"
                 bottom="-25px"
                 right="-25px"
@@ -151,6 +153,7 @@ export default function About() {
                 }}
               />
               <MotionBox
+                display={{ base: "none", md: "block" }}
                 position="absolute"
                 top="40%"
                 right="-15px"
@@ -171,19 +174,22 @@ export default function About() {
               />
 
               <MotionBox
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
+                overflow="hidden"
+                borderRadius="3xl"
               >
                 <Image
                   src="/images/about-image.jpg"
                   alt="Reigns Hydraulics workshop and equipment"
                   borderRadius="3xl"
                   w="full"
-                  h={{ base: "500px", md: "650px" }}
+                  h={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
                   objectFit="cover"
-                  objectPosition="center top"
+                  objectPosition="center center"
                   filter="contrast(1.05) brightness(1.02) saturate(1.1)"
                   boxShadow="0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)"
+                  loading="eager"
                 />
               </MotionBox>
             </Box>

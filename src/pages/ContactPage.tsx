@@ -1,18 +1,13 @@
 import { Box } from "@chakra-ui/react"
-import Navbar from "../components/Navbar"
+import Layout from "../components/Layout"
 import Contact from "../components/Contact"
-import Footer from "../components/Footer"
-import BackToTop from "../components/BackToTop"
 
 export default function ContactPage() {
   return (
-    <Box bg="navy.950" minH="100vh">
-      <Navbar />
-      <main id="main-content">
+    <Layout>
+      <Box bg="navy.950" minH="100vh">
         <Contact />
-      </main>
-      <Footer />
-      <BackToTop />
-    </Box>
+      </Box>
+    </Layout>
   )
 }

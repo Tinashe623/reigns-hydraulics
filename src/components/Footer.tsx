@@ -1,4 +1,4 @@
-import { Box, Flex, Text, VStack, HStack, SimpleGrid } from "@chakra-ui/react"
+import { Box, Flex, Text, VStack, HStack, SimpleGrid, Image } from "@chakra-ui/react"
 import { FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from "react-icons/fi"
 
 const services = [
@@ -24,26 +24,13 @@ export default function Footer() {
               fontWeight="800"
               letterSpacing="1px"
             >
-              REIGNS{" "}
-              <Text
-                as="span"
-                color="accent.500"
-                position="relative"
-                _before={{
-                  content: '""',
-                  position: "absolute",
-                  bottom: "-4px",
-                  left: 0,
-                  right: 0,
-                  height: "2px",
-                  bg: "accent.500",
-                  borderRadius: "full",
-                  opacity: 0.8
-                }}
-              >
-                HYDRAULICS
-              </Text>
-              <Text as="span" color="accent.500" fontSize="2xl">.</Text>
+              <Image
+                src="/images/reigns-logo.png"
+                alt="Reigns Hydraulics"
+                h="44px"
+                w="auto"
+                objectFit="contain"
+              />
             </Text>
             <Box
               bg="accent.500"

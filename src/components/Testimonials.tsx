@@ -56,7 +56,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
           lineHeight="1.6"
           mb={4}
           fontStyle="normal"
-          lineClamp={4}
+          noOfLines={4}
           flex={1}
         >
           {testimonial.quote}

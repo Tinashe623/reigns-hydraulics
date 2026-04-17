@@ -1,7 +1,7 @@
 import { Box, Flex, Text, VStack, HStack, Input, Textarea, Button, SimpleGrid } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { FiPhone, FiMail, FiMapPin, FiSend, FiMessageCircle } from "react-icons/fi"
+import { FiPhone, FiMail, FiMapPin, FiSend, FiMessageCircle, FiCheck, FiAlertCircle } from "react-icons/fi"
 
 const MotionBox = motion.create(Box)
 
@@ -13,7 +13,25 @@ const serviceTypes = [
   { value: "other", label: "Other" }
 ]
 
+const WHATSAPP_NUMBER = "27604283606"
 
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  serviceType: string
+  message: string
+}
+
+function validateForm(data: FormData) {
+  const errors: Record<string, string> = {}
+  if (!data.name.trim()) errors.name = "Name is required"
+  if (!data.email.trim()) errors.email = "Email is required"
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = "Invalid email format"
+  if (!data.phone.trim()) errors.phone = "Phone is required"
+  if (!data.serviceType) errors.serviceType = "Please select a service"
+  return errors
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -23,17 +41,62 @@ export default function Contact() {
     serviceType: "",
     message: ""
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const validationErrors = validateForm(formData)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+    setErrors({})
     setIsSubmitting(true)
+    setSubmitStatus("idle")
+    
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      // Reset form on success
-      setFormData({ name: "", email: "", phone: "", serviceType: "", message: "" })
+      const serviceLabel = serviceTypes.find(s => s.value === formData.serviceType)?.label || formData.serviceType
+      
+      const response = await fetch("https://formspree.io/f/xpwzgvzp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          serviceType: serviceLabel,
+          message: formData.message
+        })
+      })
+      
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", phone: "", serviceType: "", message: "" })
+      } else {
+        throw new Error("Failed to send email")
+      }
+    } catch {
+      setSubmitStatus("error")
+      setErrorMessage("Failed to send request. Please try WhatsApp instead.")
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleWhatsApp = () => {
+    const serviceLabel = serviceTypes.find(s => s.value === formData.serviceType)?.label || formData.serviceType
+    const message = `*New Service Request*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Service:* ${serviceLabel}\n*Message:* ${formData.message || "N/A"}`
+    const encodedMessage = encodeURIComponent(message)
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank")
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }))
     }
   }
 
@@ -94,34 +157,36 @@ export default function Contact() {
                       <Text fontSize="sm" color="gray.400" mb={2}>Name *</Text>
                       <Input
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
                         placeholder="Your name"
                         bg="navy.800"
                         border="1px solid"
-                        borderColor="whiteAlpha.200"
+                        borderColor={errors.name ? "red.500" : "whiteAlpha.200"}
                         color="white"
                         _placeholder={{ color: "gray.500" }}
                         _focus={{ borderColor: "accent.500", boxShadow: "none" }}
                         _hover={{ borderColor: "accent.500" }}
                         py={6}
                       />
+                      {errors.name && <Text fontSize="sm" color="red.400" mt={1}>{errors.name}</Text>}
                     </Box>
                     <Box>
                       <Text fontSize="sm" color="gray.400" mb={2}>Email *</Text>
                       <Input
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
                         type="email"
                         placeholder="your@email.com"
                         bg="navy.800"
                         border="1px solid"
-                        borderColor="whiteAlpha.200"
+                        borderColor={errors.email ? "red.500" : "whiteAlpha.200"}
                         color="white"
                         _placeholder={{ color: "gray.500" }}
                         _focus={{ borderColor: "accent.500", boxShadow: "none" }}
                         _hover={{ borderColor: "accent.500" }}
                         py={6}
                       />
+                      {errors.email && <Text fontSize="sm" color="red.400" mt={1}>{errors.email}</Text>}
                     </Box>
                   </SimpleGrid>
 
@@ -130,18 +195,19 @@ export default function Contact() {
                       <Text fontSize="sm" color="gray.400" mb={2}>Phone *</Text>
                       <Input
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
                         type="tel"
                         placeholder="+1 (555) 000-0000"
                         bg="navy.800"
                         border="1px solid"
-                        borderColor="whiteAlpha.200"
+                        borderColor={errors.phone ? "red.500" : "whiteAlpha.200"}
                         color="white"
                         _placeholder={{ color: "gray.500" }}
                         _focus={{ borderColor: "accent.500", boxShadow: "none" }}
                         _hover={{ borderColor: "accent.500" }}
                         py={6}
                       />
+                      {errors.phone && <Text fontSize="sm" color="red.400" mt={1}>{errors.phone}</Text>}
                     </Box>
                     <Box>
                       <Text fontSize="sm" color="gray.400" mb={2}>Service Type *</Text>
@@ -149,7 +215,7 @@ export default function Contact() {
                         position="relative"
                         border="1px solid"
                         borderRadius="lg"
-                        borderColor={formData.serviceType ? "accent.500" : "whiteAlpha.200"}
+                        borderColor={errors.serviceType ? "red.500" : formData.serviceType ? "accent.500" : "whiteAlpha.200"}
                         bg="navy.800"
                         transition="border-color 0.2s"
                         _hover={{ borderColor: "accent.500" }}
@@ -157,7 +223,7 @@ export default function Contact() {
                       >
                         <select
                           value={formData.serviceType}
-                          onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                          onChange={(e) => handleInputChange("serviceType", e.target.value)}
                           style={{
                             width: "100%",
                             padding: "16px",
@@ -177,6 +243,7 @@ export default function Contact() {
                           ))}
                         </select>
                       </Box>
+                      {errors.serviceType && <Text fontSize="sm" color="red.400" mt={1}>{errors.serviceType}</Text>}
                     </Box>
                   </SimpleGrid>
 
@@ -198,49 +265,49 @@ export default function Contact() {
                     />
                   </Box>
 
-                  <MotionBox
+<MotionBox
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Button
+<Button
                       type="submit"
                       bg="brand.500"
                       color="white"
                       size="lg"
                       fontWeight="bold"
                       w="full"
-                      loading={isSubmitting}
+                      isLoading={isSubmitting}
                       loadingText="SENDING REQUEST..."
 
                        _hover={{
-                         bg: "brand.600",
-                         transform: "translateY(-1px)",
-                         _before: {
-                           transform: "translateX(100%)"
-                         }
-                       }}
-                       _disabled={{
-                         bg: "gray.600",
-                         cursor: "not-allowed",
-                         transform: "none"
-                       }}
-                       transition="all 0.3s ease"
-                       borderRadius="xl"
-                       py={6}
-                       fontSize="md"
-                       position="relative"
-                       overflow="hidden"
-                       _before={{
-                         content: '""',
-                         position: "absolute",
-                         inset: 0,
-                         bgGradient: "linear(to-r, transparent, rgba(255,255,255,0.2), transparent)",
-                         transform: "translateX(-100%)",
-                         transition: "transform 0.6s"
-                       }}
+                           bg: "brand.600",
+                           transform: "translateY(-1px)",
+                           _before: {
+                             transform: "translateX(100%)"
+                           }
+                         }}
+                        _disabled={{
+                          bg: "gray.600",
+                          cursor: "not-allowed",
+                          transform: "none"
+                        }}
+                        transition="all 0.3s ease"
+                        borderRadius="xl"
+                        py={6}
+                        fontSize="md"
+                        position="relative"
+                        overflow="hidden"
+                        _before={{
+                          content: '""',
+                          position: "absolute",
+                          inset: 0,
+                          bgGradient: "linear(to-r, transparent, rgba(255,255,255,0.2), transparent)",
+                          transform: "translateX(-100%)",
+                          transition: "transform 0.6s"
+                        }}
                     >
-                      <HStack gap={3}>
+                      <HStack spacing={3}>
                         <MotionBox
                           animate={isSubmitting ? { rotate: 360 } : { rotate: 0 }}
                           transition={{ duration: 1, repeat: isSubmitting ? Infinity : 0, ease: "linear" }}
@@ -253,6 +320,69 @@ export default function Contact() {
                       </HStack>
                     </Button>
                   </MotionBox>
+
+                  {submitStatus === "success" && (
+                    <MotionBox
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      bg="green.900"
+                      border="1px solid"
+                      borderColor="green.500"
+                      borderRadius="lg"
+                      p={4}
+                    >
+                      <HStack gap={3}>
+                        <Flex w="32px" h="32px" bg="green.500" borderRadius="full" align="center" justify="center">
+                          <FiCheck size={18} color="white" />
+                        </Flex>
+                        <VStack align="start" gap={0}>
+                          <Text color="white" fontWeight="bold">Request Sent Successfully!</Text>
+                          <Text color="green.300" fontSize="sm">We'll get back to you within 24 hours.</Text>
+                        </VStack>
+                      </HStack>
+                    </MotionBox>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <MotionBox
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      bg="red.900"
+                      border="1px solid"
+                      borderColor="red.500"
+                      borderRadius="lg"
+                      p={4}
+                    >
+                      <HStack gap={3}>
+                        <Flex w="32px" h="32px" bg="red.500" borderRadius="full" align="center" justify="center">
+                          <FiAlertCircle size={18} color="white" />
+                        </Flex>
+                        <VStack align="start" gap={1}>
+                          <Text color="white" fontWeight="bold">Failed to Send Email</Text>
+                          <Text color="red.300" fontSize="sm">{errorMessage}</Text>
+                        </VStack>
+                      </HStack>
+                    </MotionBox>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <Button
+                      onClick={handleWhatsApp}
+                      bg="green.500"
+                      color="white"
+                      size="lg"
+                      fontWeight="bold"
+                      w="full"
+                      borderRadius="xl"
+                      py={6}
+                      _hover={{ bg: "green.600" }}
+                    >
+                      <HStack gap={3}>
+                        <FiMessageCircle size={18} />
+                        <Text>Send via WhatsApp</Text>
+                      </HStack>
+                    </Button>
+                  )}
                 </VStack>
               </form>
             </Box>
