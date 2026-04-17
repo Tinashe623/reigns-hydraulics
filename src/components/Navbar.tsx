@@ -58,6 +58,7 @@ export default function Navbar() {
       backdropFilter="blur(12px)"
       borderBottom={scrolled ? "1px solid" : "none"}
       borderColor="whiteAlpha.100"
+      h={scrolled ? "60px" : "70px"}
       transition="all 0.3s ease"
     >
       <a
@@ -85,8 +86,8 @@ export default function Navbar() {
       <Flex
         maxW="1400px"
         mx="auto"
-        px={{ base: 4, md: 8 }}
-        py={4}
+        px={{ base: 3, sm: 4, md: 6 }}
+        h="full"
         align="center"
         justify="space-between"
       >
@@ -95,8 +96,9 @@ export default function Navbar() {
             fontFamily="heading"
             color="white"
             fontWeight="800"
-            fontSize={{ base: "xl", md: "2xl" }}
-            letterSpacing="1px"
+            fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }}
+            letterSpacing="0.5px"
+            lineHeight="1.2"
           >
             REIGNS{" "}
             <Text as="span" color="accent.400" borderBottom="2px solid" borderColor="accent.400">
@@ -105,7 +107,7 @@ export default function Navbar() {
           </Text>
         </Box>
 
-        <HStack display={{ base: "none", md: "flex" }} spacing={8}>
+        <HStack display={{ base: "none", lg: "flex" }} spacing={6}>
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -115,8 +117,8 @@ export default function Navbar() {
                 handleNavClick(link.href)
               }}
               color="gray.300"
-              fontSize="sm"
-              fontWeight="700"
+              fontSize="xs"
+              fontWeight="600"
               letterSpacing="0.5px"
               _hover={{ color: "white", textDecoration: "none" }}
               position="relative"
@@ -142,26 +144,28 @@ export default function Navbar() {
         </HStack>
 
         <HStack spacing={4}>
-          <Box display={{ base: "none", md: "block" }}>
-            <Button
-              onClick={() => navigate("/contact")}
-              bg="accent.500"
-              color="white"
-              size="sm"
-              fontWeight="bold"
-              _hover={{ bg: "accent.600", transform: "scale(1.02)" }}
-              transition="all 0.2s"
-            >
-              Get Quote
-            </Button>
-          </Box>
+          <Button
+            onClick={() => navigate("/contact")}
+            bg="accent.500"
+            color="white"
+            size="sm"
+            fontWeight="bold"
+            fontSize="xs"
+            px={4}
+            _hover={{ bg: "accent.600", transform: "scale(1.02)" }}
+            transition="all 0.2s"
+            display={{ base: "none", lg: "flex" }}
+          >
+            Get Quote
+          </Button>
 
           <IconButton
             aria-label="Menu"
-            display={{ base: "flex", md: "none" }}
+            display={{ base: "flex", lg: "none" }}
             onClick={onOpen}
             color="white"
             variant="ghost"
+            size="md"
           >
             <FiMenu size={24} />
           </IconButton>

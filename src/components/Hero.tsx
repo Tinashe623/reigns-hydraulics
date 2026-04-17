@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Button, Badge, VStack, useBreakpointValue } from "@chakra-ui/react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { FiPhone, FiChevronDown, FiZap, FiArrowRight } from "react-icons/fi"
+import { FiPhone, FiZap, FiArrowRight } from "react-icons/fi"
 import { useRef, useEffect, useState } from "react"
 
 const MotionBox = motion.create(Box)
@@ -72,7 +72,8 @@ export default function Hero() {
       id="home"
       ref={containerRef}
       position="relative"
-      minH={{ base: "90vh", md: "100vh" }}
+      h={{ base: "calc(100vh - 60px)", md: "calc(100vh - 70px)" }}
+      minH={{ base: "calc(100vh - 60px)", md: "calc(100vh - 70px)" }}
       display="flex"
       alignItems="center"
       overflow="hidden"
@@ -219,15 +220,14 @@ export default function Hero() {
         zIndex={10}
         maxW="1000px"
         mx="auto"
-        px={{ base: 6, sm: 8, md: 12 }}
-        py={{ base: 24, md: 32 }}
-        pb={{ base: 32, md: 40, xl: 20 }}
+        px={{ base: 4, sm: 6, md: 8 }}
+        py={{ base: 8, md: 12 }}
+        pb={{ base: 8, md: 12 }}
         direction="column"
         align="center"
         justify="center"
         w="full"
-        gap={{ base: 8, md: 12 }}
-        minH="80vh"
+        h="full"
       >
         {/* Main Text Content */}
         <MotionFlex
@@ -249,83 +249,83 @@ export default function Hero() {
             <Badge
               bg="accent.500"
               color="white"
-              px={5}
-              py={2}
+              px={3}
+              py={1}
               borderRadius="full"
-              fontSize="sm"
+              fontSize="xs"
               fontWeight="600"
               letterSpacing="0.5px"
               display="inline-flex"
               alignItems="center"
               gap={2}
-              mb={8}
+              mb={{ base: 4, md: 6 }}
               boxShadow="0 4px 12px rgba(249,115,22,0.3)"
             >
-              <FiZap size={16} />
+              <FiZap size={12} />
               24/7 EMERGENCY SERVICE
             </Badge>
           </MotionBox>
 
             <MotionBox
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 80
-              }}
-              mb={6}
-            >
-              <VStack gap={2} align="center">
-                <Text
-                  fontFamily="heading"
-                  fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
-                  lineHeight="1.2"
-                  color="white"
-                  textAlign="center"
-                  fontWeight="700"
-                  textTransform="uppercase"
-                  letterSpacing="wide"
-                >
-                  Heavy Duty
-                </Text>
-                <Text
-                  fontFamily="heading"
-                  fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
-                  lineHeight="1.2"
-                  color="white"
-                  textAlign="center"
-                  fontWeight="700"
-                  textTransform="uppercase"
-                  letterSpacing="wide"
-                >
-                  Hydraulic
-                </Text>
-                <Flex align="center" gap={3} w="full" justify="center" my={1}>
-                  <Box flex={1} h="1px" maxW="50px" bgGradient="linear(to-r, transparent, accent.500)" />
-                  <Box w="6px" h="6px" bg="accent.500" borderRadius="full" />
-                  <Box flex={1} h="1px" maxW="50px" bgGradient="linear(to-l, transparent, accent.500)" />
-                </Flex>
-                <Text
-                  fontFamily="heading"
-                  fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
-                  lineHeight="1.2"
-                  color="accent.400"
-                  textAlign="center"
-                  fontWeight="600"
-                  textTransform="uppercase"
-                  letterSpacing="wide"
-                >
-                  Solutions
-                </Text>
-              </VStack>
-            </MotionBox>
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: "easeOut",
+              type: "spring",
+              stiffness: 80
+            }}
+            mb={{ base: 3, md: 4 }}
+          >
+            <VStack spacing={1} align="center">
+              <Text
+                fontFamily="heading"
+                fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
+                lineHeight="1.2"
+                color="white"
+                textAlign="center"
+                fontWeight="700"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
+                Heavy Duty
+              </Text>
+              <Text
+                fontFamily="heading"
+                fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
+                lineHeight="1.2"
+                color="white"
+                textAlign="center"
+                fontWeight="700"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
+                Hydraulic
+              </Text>
+              <Flex align="center" gap={2} w="full" justify="center" my={1}>
+                <Box flex={1} h="1px" maxW="30px" bgGradient="linear(to-r, transparent, accent.500)" />
+                <Box w="4px" h="4px" bg="accent.500" borderRadius="full" />
+                <Box flex={1} h="1px" maxW="30px" bgGradient="linear(to-l, transparent, accent.500)" />
+              </Flex>
+              <Text
+                fontFamily="heading"
+                fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }}
+                lineHeight="1.2"
+                color="accent.400"
+                textAlign="center"
+                fontWeight="600"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
+                Solutions
+              </Text>
+            </VStack>
+          </MotionBox>
 
           <MotionBox
             maxW="600px"
-            mb={16}
+            mb={{ base: 4, md: 6 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -335,7 +335,7 @@ export default function Hero() {
             }}
           >
             <Text
-              fontSize={{ base: "xl", md: "2xl" }}
+              fontSize={{ base: "sm", md: "md", lg: "lg" }}
               color="gray.300"
               lineHeight="1.6"
               fontWeight="400"
@@ -359,7 +359,7 @@ export default function Hero() {
             }}
             w={{ base: "full", sm: "auto" }}
           >
-            <Flex gap={{ base: 4, sm: 6 }} direction={{ base: "column", sm: "row" }} justify="center" align="center" w="full" maxW="500px" mx="auto" mb={{ base: 8, xl: 12 }}>
+            <Flex gap={{ base: 3, sm: 4 }} direction={{ base: "column", sm: "row" }} justify="center" align="center" w="full" maxW="450px" mx="auto">
               <MotionBox
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -367,13 +367,13 @@ export default function Hero() {
                 <Button
                   bg="brand.500"
                   color="white"
-                  size="lg"
-                  height="60px"
-                  px={10}
-                  fontSize="md"
+                  size="md"
+                  h="48px"
+                  px={6}
+                  fontSize="sm"
                   fontWeight="600"
                   borderRadius="lg"
-                  w={{ base: "full", sm: "200px" }}
+                  w={{ base: "full", sm: "160px" }}
                   boxShadow="0 4px 20px rgba(59, 130, 246, 0.3)"
                   _hover={{
                     bg: "brand.600",
@@ -385,9 +385,9 @@ export default function Hero() {
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  gap={3}
+                  gap={2}
                 >
-                  <Text>Request Service</Text>
+                  <Text fontSize="sm">Request Service</Text>
                   <MotionBox
                     animate={{ x: [0, 3, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -403,13 +403,13 @@ export default function Hero() {
                 <Button
                   variant="outline"
                   color="white"
-                  size="lg"
-                  height="60px"
-                  px={10}
-                  fontSize="md"
+                  size="md"
+                  h="48px"
+                  px={6}
+                  fontSize="sm"
                   fontWeight="600"
                   borderRadius="lg"
-                  w={{ base: "full", sm: "200px" }}
+                  w={{ base: "full", sm: "160px" }}
                   borderColor="whiteAlpha.600"
                   bg="transparent"
                   _hover={{
@@ -422,13 +422,13 @@ export default function Hero() {
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  gap={3}
+                  gap={2}
                 >
                   <MotionBox
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <FiPhone />
+                    <FiPhone size={16} />
                   </MotionBox>
                   <Text>Call Now</Text>
                 </Button>
@@ -437,69 +437,6 @@ export default function Hero() {
           </MotionBox>
         </MotionFlex>
       </Flex>
-
-
-
-      {/* Enhanced Scroll Indicator - Only on very large screens */}
-      <MotionBox
-        position="absolute"
-        bottom={8}
-        left="50%"
-        transform="translateX(-50%)"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        display={{ base: "none", "2xl": "flex" }}
-        flexDirection="column"
-        alignItems="center"
-        gap={3}
-        onClick={() => scrollTo("#services")}
-        cursor="pointer"
-        _hover={{ color: "accent.400" }}
-        color="gray.400"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        zIndex={5}
-      >
-        <MotionBox
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Text
-            fontSize="xs"
-            letterSpacing="2px"
-            fontWeight="600"
-            textTransform="uppercase"
-            opacity={0.8}
-          >
-            Scroll to Explore
-          </Text>
-        </MotionBox>
-        <MotionBox
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-        >
-          <FiChevronDown size={24} />
-        </MotionBox>
-        <Box
-          w="1px"
-          h="60px"
-          bg="accent.500"
-          opacity={0.5}
-          position="relative"
-          overflow="hidden"
-          _before={{
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            bg: "accent.500",
-            animation: "scrollLine 3s infinite"
-          }}
-        />
-      </MotionBox>
     </Box>
   )
 }
