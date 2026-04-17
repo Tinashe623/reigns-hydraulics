@@ -27,10 +27,19 @@ export default function Navbar() {
     window.addEventListener('resize', setVh)
     window.addEventListener('orientationchange', setVh)
 
+    let ticking = false
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50)
+          ticking = false
+        })
+        ticking = true
+      }
     }
-    window.addEventListener("scroll", handleScroll)
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
 
     return () => {
       window.removeEventListener('resize', setVh)
@@ -53,13 +62,12 @@ export default function Navbar() {
       left={0}
       right={0}
       w="full"
+      h="60px"
       zIndex={1000}
       bg="rgba(10, 15, 26, 0.95)"
       backdropFilter="blur(12px)"
       borderBottom={scrolled ? "1px solid" : "none"}
       borderColor="whiteAlpha.100"
-      h={scrolled ? "60px" : "70px"}
-      transition="all 0.3s ease"
     >
       <a
         href="#main-content"

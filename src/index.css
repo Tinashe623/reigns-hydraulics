@@ -6,6 +6,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 html, body {
@@ -14,27 +16,25 @@ html, body {
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  position: relative;
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
   overflow-x: hidden;
+}
+
+/* Prevent pull-to-refresh and rubber-banding */
+body {
+  overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-/* Mobile viewport fixes */
-@media (max-width: 768px) {
-  html, body {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-  }
-}
-
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -68,25 +68,5 @@ html {
 
   html {
     scroll-behavior: auto;
-  }
-}
-
-/* Mobile navbar fixes */
-.navbar-fixed {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1000 !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-
-@media (max-width: 768px) {
-  nav[role="navigation"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1000 !important;
   }
 }
