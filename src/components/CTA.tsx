@@ -92,7 +92,7 @@ export default function CTA() {
               fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
               color="white"
               fontWeight="800"
-              lineHeight="1.2"
+              lineHeight={{ base: "1.4", md: "1.2" }}
             >
               NEED{" "}
               <Text
