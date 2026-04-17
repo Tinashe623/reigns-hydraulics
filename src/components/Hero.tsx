@@ -218,16 +218,17 @@ export default function Hero() {
       <Flex
         position="relative"
         zIndex={10}
-        maxW="1000px"
+        maxW="1200px"
         mx="auto"
-        px={{ base: 4, sm: 6, md: 8 }}
-        py={{ base: 8, md: 12 }}
-        pb={{ base: 8, md: 12 }}
+        px={{ base: 6, md: 12, lg: 16 }}
+        py={{ base: 12, md: 20 }}
+        pb={{ base: 12, md: 20 }}
         direction="column"
         align="center"
         justify="center"
         w="full"
         h="full"
+        gap={{ base: 6, md: 10 }}
       >
         {/* Main Text Content */}
         <MotionFlex
@@ -249,19 +250,19 @@ export default function Hero() {
             <Badge
               bg="accent.500"
               color="white"
-              px={3}
-              py={1}
+              px={4}
+              py={1.5}
               borderRadius="full"
-              fontSize="xs"
+              fontSize="sm"
               fontWeight="600"
               letterSpacing="0.5px"
               display="inline-flex"
               alignItems="center"
               gap={2}
-              mb={{ base: 4, md: 6 }}
+              mb={{ base: 4, md: 8 }}
               boxShadow="0 4px 12px rgba(249,115,22,0.3)"
             >
-              <FiZap size={12} />
+              <FiZap size={14} />
               24/7 EMERGENCY SERVICE
             </Badge>
           </MotionBox>
@@ -276,13 +277,13 @@ export default function Hero() {
               type: "spring",
               stiffness: 80
             }}
-            mb={{ base: 3, md: 4 }}
+            mb={{ base: 3, md: 6 }}
           >
-            <VStack spacing={1} align="center">
+            <VStack spacing={2} align="center">
               <Text
                 fontFamily="heading"
-                fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
-                lineHeight="1.2"
+                fontSize={{ base: "xl", sm: "2xl", md: "4xl", lg: "5xl", xl: "6xl" }}
+                lineHeight="1.1"
                 color="white"
                 textAlign="center"
                 fontWeight="700"
@@ -293,8 +294,8 @@ export default function Hero() {
               </Text>
               <Text
                 fontFamily="heading"
-                fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
-                lineHeight="1.2"
+                fontSize={{ base: "xl", sm: "2xl", md: "4xl", lg: "5xl", xl: "6xl" }}
+                lineHeight="1.1"
                 color="white"
                 textAlign="center"
                 fontWeight="700"
@@ -303,15 +304,15 @@ export default function Hero() {
               >
                 Hydraulic
               </Text>
-              <Flex align="center" gap={2} w="full" justify="center" my={1}>
-                <Box flex={1} h="1px" maxW="30px" bgGradient="linear(to-r, transparent, accent.500)" />
-                <Box w="4px" h="4px" bg="accent.500" borderRadius="full" />
-                <Box flex={1} h="1px" maxW="30px" bgGradient="linear(to-l, transparent, accent.500)" />
+              <Flex align="center" gap={2} w="full" justify="center" my={2}>
+                <Box flex={1} h="1px" maxW="40px" bgGradient="linear(to-r, transparent, accent.500)" />
+                <Box w="6px" h="6px" bg="accent.500" borderRadius="full" />
+                <Box flex={1} h="1px" maxW="40px" bgGradient="linear(to-l, transparent, accent.500)" />
               </Flex>
               <Text
                 fontFamily="heading"
-                fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }}
-                lineHeight="1.2"
+                fontSize={{ base: "lg", sm: "xl", md: "2xl", lg: "3xl" }}
+                lineHeight="1.1"
                 color="accent.400"
                 textAlign="center"
                 fontWeight="600"
@@ -324,8 +325,8 @@ export default function Hero() {
           </MotionBox>
 
           <MotionBox
-            maxW="600px"
-            mb={{ base: 4, md: 6 }}
+            maxW="650px"
+            mb={{ base: 4, md: 8 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -335,7 +336,7 @@ export default function Hero() {
             }}
           >
             <Text
-              fontSize={{ base: "sm", md: "md", lg: "lg" }}
+              fontSize={{ base: "md", md: "lg", lg: "xl" }}
               color="gray.300"
               lineHeight="1.6"
               fontWeight="400"
@@ -357,9 +358,9 @@ export default function Hero() {
               type: "spring",
               stiffness: 60
             }}
-            w={{ base: "full", sm: "auto" }}
+            w={{ base: "full", md: "auto" }}
           >
-            <Flex gap={{ base: 3, sm: 4 }} direction={{ base: "column", sm: "row" }} justify="center" align="center" w="full" maxW="450px" mx="auto">
+            <Flex gap={{ base: 3, md: 6 }} direction={{ base: "column", sm: "row" }} justify="center" align="center" w="full" maxW="550px" mx="auto">
               <MotionBox
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -367,13 +368,13 @@ export default function Hero() {
                 <Button
                   bg="brand.500"
                   color="white"
-                  size="md"
-                  h="48px"
-                  px={6}
-                  fontSize="sm"
+                  size="lg"
+                  h="56px"
+                  px={8}
+                  fontSize="md"
                   fontWeight="600"
-                  borderRadius="lg"
-                  w={{ base: "full", sm: "160px" }}
+                  borderRadius="xl"
+                  w={{ base: "full", sm: "200px" }}
                   boxShadow="0 4px 20px rgba(59, 130, 246, 0.3)"
                   _hover={{
                     bg: "brand.600",
@@ -385,7 +386,7 @@ export default function Hero() {
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  gap={2}
+                  gap={3}
                 >
                   <Text fontSize="sm">Request Service</Text>
                   <MotionBox
@@ -403,13 +404,13 @@ export default function Hero() {
                 <Button
                   variant="outline"
                   color="white"
-                  size="md"
-                  h="48px"
-                  px={6}
-                  fontSize="sm"
+                  size="lg"
+                  h="56px"
+                  px={8}
+                  fontSize="md"
                   fontWeight="600"
-                  borderRadius="lg"
-                  w={{ base: "full", sm: "160px" }}
+                  borderRadius="xl"
+                  w={{ base: "full", sm: "200px" }}
                   borderColor="whiteAlpha.600"
                   bg="transparent"
                   _hover={{
