@@ -98,18 +98,8 @@ export default function CTA() {
               <Text
                 as="span"
                 color="accent.500"
-                position="relative"
-                _before={{
-                  content: '""',
-                  position: "absolute",
-                  bottom: "-2px",
-                  left: 0,
-                  right: 0,
-                  height: "3px",
-                  bg: "accent.500",
-                  borderRadius: "2px",
-                  opacity: 0.8
-                }}
+                borderBottom="3px solid"
+                borderColor="accent.500"
               >
                 EMERGENCY
               </Text>{" "}

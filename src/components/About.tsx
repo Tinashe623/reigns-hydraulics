@@ -151,28 +151,12 @@ export default function About() {
                   <Text
                     as="span"
                     color="accent.500"
-                    position="relative"
-                    _before={{
-                      content: '""',
-                      position: "absolute",
-                      bottom: "-2px",
-                      left: 0,
-                      right: 0,
-                      height: "3px",
-                      bg: "accent.500",
-                      borderRadius: "2px",
-                      opacity: 0.8
-                    }}
+                    borderBottom="3px solid"
+                    borderColor="accent.500"
                   >
                     REIGNS
                   </Text>
                 </Text>
-                <Box
-                  w="80px"
-                  h="1px"
-                  bgGradient="linear(to-r, accent.500, transparent)"
-                  opacity={0.6}
-                />
               </VStack>
             </MotionBox>
 
@@ -184,7 +168,7 @@ export default function About() {
               <Text
                 fontSize={{ base: "lg", md: "xl" }}
                 color="gray.300"
-                mb={8}
+                mt={12}
                 fontWeight="500"
                 lineHeight="1.6"
               >

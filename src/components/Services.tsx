@@ -204,35 +204,17 @@ export default function Services() {
               color="white"
               fontWeight="900"
               letterSpacing="tight"
-              position="relative"
             >
               OUR{" "}
               <Text
                 as="span"
                 color="accent.500"
-                position="relative"
-                _before={{
-                  content: '""',
-                  position: "absolute",
-                  bottom: "-4px",
-                  left: 0,
-                  right: 0,
-                  height: "6px",
-                  bg: "accent.500",
-                  opacity: 0.3,
-                  borderRadius: "2px"
-                }}
+                borderBottom="3px solid"
+                borderColor="accent.500"
               >
                 SERVICES
               </Text>
             </Text>
-
-            <Box
-              w="120px"
-              h="1px"
-              bgGradient="linear(to-r, transparent, accent.500, transparent)"
-              opacity={0.6}
-            />
 
             <Text
               fontSize={{ base: "lg", md: "xl" }}
