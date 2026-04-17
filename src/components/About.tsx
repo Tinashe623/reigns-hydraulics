@@ -93,120 +93,45 @@ export default function About() {
                     radial(circle at 30% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%)"
       />
 
-      <Box maxW="1400px" mx="auto" px={{ base: 4, md: 8 }} position="relative">
+      <Box maxW="1400px" mx="auto" px={{ base: 4, sm: 6, md: 8 }} position="relative">
         <Flex
-          direction={{ base: "column", lg: "row" }}
-          gap={{ base: 16, lg: 20 }}
+          direction={{ base: "column", md: "row" }}
+          gap={{ base: 10, md: 12 }}
           align="center"
         >
-          {/* Left Column - Enhanced Image */}
+          {/* Left Column - Image */}
           <MotionBox
             flex={1}
-            initial={{ opacity: 0, x: -50, scale: 0.9 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            w={{ base: "full", md: "45%" }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.8,
-              ease: "easeOut",
-              type: "spring",
-              stiffness: 100
-            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <Box position="relative">
-              {/* Modern Decorative Elements */}
-              <MotionBox
-                display={{ base: "none", md: "block" }}
-                position="absolute"
-                top="-20px"
-                left="-20px"
-                w="80px"
-                h="80px"
-                borderRadius="xl"
-                bg="linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.1))"
-                border={`2px solid rgba(249, 115, 22, 0.3)`}
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.4,
-                  type: "spring",
-                  stiffness: 120
-                }}
+            <Box
+              overflow="hidden"
+              borderRadius="2xl"
+              boxShadow="0 20px 40px rgba(0,0,0,0.4)"
+            >
+              <Image
+                src="/images/services.jpg"
+                alt="Reigns Hydraulics workshop"
+                w="full"
+                h={{ base: "auto", sm: "280px", md: "350px" }}
+                objectFit="cover"
+                minH={{ base: "220px", sm: "280px" }}
               />
-              <MotionBox
-                display={{ base: "none", lg: "block" }}
-                position="absolute"
-                bottom="-25px"
-                right="-25px"
-                w="120px"
-                h="120px"
-                borderRadius="2xl"
-                bg="linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.08))"
-                border={`2px solid rgba(59, 130, 246, 0.25)`}
-                initial={{ scale: 0, rotate: 180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 120
-                }}
-              />
-              <MotionBox
-                display={{ base: "none", md: "block" }}
-                position="absolute"
-                top="40%"
-                right="-15px"
-                w="6px"
-                h="6px"
-                borderRadius="full"
-                bg="linear-gradient(45deg, #f97316, #3b82f6)"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                boxShadow="0 0 12px rgba(249, 115, 22, 0.6)"
-              />
-
-              <MotionBox
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                overflow="hidden"
-                borderRadius="3xl"
-              >
-                <Image
-                  src="/images/about-image.jpg"
-                  alt="Reigns Hydraulics workshop and equipment"
-                  borderRadius="3xl"
-                  w="full"
-                  h={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
-                  objectFit="cover"
-                  objectPosition="center center"
-                  filter="contrast(1.05) brightness(1.02) saturate(1.1)"
-                  boxShadow="0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)"
-                  loading="eager"
-                />
-              </MotionBox>
             </Box>
           </MotionBox>
 
-          {/* Right Column - Enhanced Content */}
+          {/* Right Column - Content */}
           <MotionBox
             flex={1}
+            w={{ base: "full", md: "55%" }}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.8,
-              ease: "easeOut",
-              type: "spring",
-              stiffness: 80
-            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <MotionBox
               initial={{ opacity: 0, y: 25 }}
