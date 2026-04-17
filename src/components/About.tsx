@@ -95,7 +95,7 @@ export default function About() {
 
       <Box maxW="1400px" mx="auto" px={{ base: 4, sm: 6, md: 8 }} position="relative">
         <Flex
-          direction={{ base: "column", md: "row" }}
+          direction={{ base: "column-reverse", md: "row" }}
           gap={{ base: 10, md: 12 }}
           align="center"
         >
