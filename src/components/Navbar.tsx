@@ -109,7 +109,7 @@ export default function Navbar() {
             lineHeight="1.2"
           >
             REIGNS{" "}
-            <Text as="span" color="accent.400" borderBottom="2px solid" borderColor="accent.400">
+            <Text as="span" color="accent.500" borderBottom="3px solid" borderColor="accent.500">
               HYDRAULICS
             </Text>
           </Text>
